@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 class Rs_paisa{
     int rs,paisa;

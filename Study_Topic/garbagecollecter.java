@@ -13,11 +13,11 @@ class A1 {
 }
 public class garbagecollecter {
     public static void main(String[] args) {
-        A obj1;  // first ma yeuta A type ko obj1 vanne object banayo
-        obj1=new A();
-        obj1=new A();
-        obj1=new A();  // obj1 vanna obj ko name ma 4 ota obj create vayo
-        obj1=new A();   // 4 ota obj chai create vayo tara yo last ko matrai refrenced xa aaru chai xaina
+        A1 obj1;  // first ma yeuta A type ko obj1 vanne object banayo
+        obj1=new A1();
+        obj1=new A1();
+        obj1=new A1();  // obj1 vanna obj ko name ma 4 ota obj create vayo
+        obj1=new A1();   // 4 ota obj chai create vayo tara yo last ko matrai refrenced xa aaru chai xaina
                        // latest lai refer garcha to obj1 la
         // obj1=null;
         System.gc(); // calling garbage collecter; aaba garbage collecter la mati ko 3 ota 

@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class Fibonic{
     public static int fact(int c){
         if (c==1){
@@ -12,6 +13,12 @@ public class Fibonic{
 
     }
     public static void main(String[] args) {
-        System.out.println(fact(12));
+        Scanner sn=new Scanner(System.in);
+        System.out.println("enter any number:");
+        int n=sn.nextInt();
+        System.out.println("the result is:");
+        for(int i=1;i<n;i++){
+            System.out.println(fact(i));
+        }  
     }
 }

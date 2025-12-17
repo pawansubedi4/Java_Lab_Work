@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class armstrong {
     public static void main(String[] args) {
         Scanner sn=new Scanner(System.in);
-        System.out.println("enter range of number to check armstrong but only three digit:");
+        System.out.println("enter range of number to check armstrong");
         int m=sn.nextInt();
         int n=sn.nextInt();
         System.out.println("the armstrong number are:");

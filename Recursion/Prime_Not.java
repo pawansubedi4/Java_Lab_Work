@@ -2,7 +2,6 @@
 import java.util.Scanner;
 
 public class Prime_Not {
-    // public int d=2;
     @SuppressWarnings("UnnecessaryReturnStatement")
     static void Prime(int n,int d){
         int c=(int) Math.sqrt(n);
