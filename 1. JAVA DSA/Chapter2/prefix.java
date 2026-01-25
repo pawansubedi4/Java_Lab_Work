@@ -30,13 +30,17 @@ class prefix {
 
     }
 
+    @SuppressWarnings("UnnecessaryContinue")
     public void toprefix() {
         infix = infix.trim();
         char[] arr = infix.toCharArray();
         for (int i = arr.length-1; i>=0; i--) {
             char c = arr[i];
-            if (isOperator(c)) {
-                while (!obj.isEmpty() && isOperator(obj.peek())&& prioty(obj.peek()) >= prioty(c)) {
+            if(c==' '){
+                continue;
+            }
+            else if (isOperator(c)) {
+                while (!obj.isEmpty() && isOperator(obj.peek())&& prioty(obj.peek()) > prioty(c)) {
                     prefix.append(obj.pop());
                 }
                 obj.push(c);
@@ -44,10 +48,12 @@ class prefix {
                 if (c == (')')) {
                     obj.push(c);
                 } else if (c == '(') {
-                    while (!obj.isEmpty() && (obj.peek() != '(')) {
+                    while (!obj.isEmpty() && (obj.peek() != ')')) {
                         prefix.append(obj.pop());
                     }
-                    obj.pop();
+                    if (!obj.isEmpty()) {
+                        obj.pop();
+                    }    
                 }
             } else {
                 prefix.append(c);
@@ -56,6 +62,7 @@ class prefix {
         while (!obj.isEmpty()) {
             prefix.append(obj.pop());
         }
+        prefix=prefix.reverse();
         System.out.println("the prefix eqn is " + prefix.toString());
     }
 }
