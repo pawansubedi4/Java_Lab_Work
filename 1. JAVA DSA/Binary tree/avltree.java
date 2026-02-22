@@ -8,7 +8,7 @@ class node{
         right=null;
     }
 }      
-class binary_search_tree{
+class Avl_tree{
     public node insert(int dta,node root){
         if(root==null){
             root=new node(dta);
@@ -19,6 +19,24 @@ class binary_search_tree{
         }
         else{
             root.right=insert(dta,root.right);
+        }
+       //for balancing
+        int balance = getbalance(root);
+        //LL
+        if(balance>1&&dta<root.left.data)
+            return rightRotate(root);
+        //RR
+        if(balance<-1&&dta>root.right.data)
+            return leftRotate(root);
+        //LR
+        if(balance>1&&dta>root.left.data) {
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+        //RL
+        if(balance<-1&&dta<root.right.data) {
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
         }
         return root;
     }
@@ -31,21 +49,39 @@ class binary_search_tree{
         System.out.print(root.data+" ");
         inorder(root.right);
     }
-    public void preorder(node root){
-        if(root==null){
-            return;
+    public int findheight(node rot){
+        if(rot==null){
+            return 0;
         }
-        System.out.print(root.data+" ");
-        preorder(root.left);
-        preorder(root.right);
+        int lef=findheight(rot.left);
+        int rig=findheight(rot.right);
+        if(lef>rig){
+            return lef+1;
+        }
+        else{
+            return rig+1;
+        }
     }
-    public void postorder(node root){
+    public int getbalance(node root){
         if(root==null){
-            return;
+            return 0;
         }
-        postorder(root.left);
-        postorder(root.right);
-        System.out.print(root.data+" ");
+        return findheight(root.left)-findheight(root.right);
+    }
+
+    node rightRotate(node y) {
+        node x=y.left;
+        node T2=x.right;
+        x.right=y;
+        y.left=T2;
+        return x;
+    }
+    node leftRotate(node x) {
+        node y=x.right;
+        node T2=y.left;
+        y.left=x;
+        x.right=T2;
+        return y;
     }
 
     public boolean search(int key,node root){
@@ -88,7 +124,23 @@ class binary_search_tree{
                 root.data=jp.data;
                 delete(jp.data,root.right);
             }
-
+        }
+        int balance = getbalance(root);
+        //LL
+        if(balance>1&&getbalance(root.left)>=0)
+            return rightRotate(root);
+        //LR
+        if(balance>1&&getbalance(root.left)<0) {
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+        //RR
+        if(balance<-1&&getbalance(root.right)<=0)
+            return leftRotate(root);
+        //RL
+        if(balance<-1&&getbalance(root.right)>0) {
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
         }
         return root;
     }
@@ -101,18 +153,14 @@ class binary_search_tree{
     
 }
 @SuppressWarnings("unused")
-class dfjfjd{
+class dfjfjyud{
     public static void main(String[] args) {
         node root=null;
         int[] aa={1,2,12,33,23,56,34,13,11,14};
-        binary_search_tree obj=new binary_search_tree();
+        Avl_tree obj=new Avl_tree();
         for(int a:aa){
             root=obj.insert(a,root);
-        }
-        obj.preorder(root);
-        System.out.println();
-        obj.postorder(root);
-        System.out.println();   
+        }  
         obj.inorder(root);
         System.out.println();
         System.out.println(obj.search(56, root));

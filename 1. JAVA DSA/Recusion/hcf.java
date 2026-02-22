@@ -1,13 +1,13 @@
 public class hcf {
-    public static int hcf(int a,int b){
+    public static int hcf1(int a,int b){
         if(b==0){
             return a;
         }
         else{
-            return hcf(b,a%b);
+            return hcf1(b,a%b);
         }
     }
     public static void main(String[] args) {
-        System.out.println(hcf(25, 8));
+        System.out.println(hcf1(25, 8));
     }
 }
