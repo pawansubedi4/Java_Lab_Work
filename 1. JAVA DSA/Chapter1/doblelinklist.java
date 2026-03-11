@@ -11,7 +11,7 @@ class dnode {
     
 }
 class dable{
-    dnode head,tail;
+    dnode head,tail=null;
     boolean checkempty12(){
         return head==null&&tail==null;
     }
@@ -21,7 +21,7 @@ class dable{
         }
         else{
             dnode tem=head;
-            head=new dnode(d,null,head);
+            head=new dnode(d,null,tem);
             tem.pnode=head;
             
 

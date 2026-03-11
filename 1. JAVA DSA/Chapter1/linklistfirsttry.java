@@ -11,7 +11,7 @@ class box{
     }
 }
 class Toconnect123{
-    box head,tail;
+    box head,tail=null;
     boolean checkempty12(){
         return head==null&&tail==null;
     }
